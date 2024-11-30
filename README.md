@@ -15,7 +15,7 @@ open RaceTrackGame
 
 This should open the Program.cs file in Visual Studio Code. 
 
-3. Replace all the code here with the code that is attached to this repository named csharp_code. Then, save the file. 
+3. Replace all the code here with the code that is attached to this repository named csharp_script. Then, save the file. 
 
 4. Open the terminal again and type in the following:
 
