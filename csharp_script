@@ -1,0 +1,97 @@
+using System;
+using System.Linq;
+using System.Threading;
+
+class Program
+{
+    static int screenWidth = 40;
+    static int screenHeight = 20;
+    static int dotX = 1;
+    static int dotY = 1;
+    static int score = 0;
+
+    static Random random = new Random();
+    static (int, int)[] obstacles;
+
+    static void Main()
+    {
+        Console.CursorVisible = false;
+        Console.SetWindowSize(screenWidth, screenHeight);
+        Console.SetBufferSize(screenWidth, screenHeight);
+        ConsoleKeyInfo keyPress;
+
+        do
+        {
+            GenerateTrack();
+            while (true)
+            {
+                DrawTrack();
+                keyPress = Console.ReadKey(true);
+                if (keyPress.Key == ConsoleKey.Escape) break;
+                if (keyPress.Key == ConsoleKey.UpArrow && dotY > 0) dotY--;
+                if (keyPress.Key == ConsoleKey.DownArrow && dotY < screenHeight - 1) dotY++;
+                if (keyPress.Key == ConsoleKey.LeftArrow && dotX > 0) dotX--;
+                if (keyPress.Key == ConsoleKey.RightArrow && dotX < screenWidth - 1) dotX++;
+
+                // Check if the player hits any obstacles
+                if (obstacles.Any(o => o.Item1 == dotX && o.Item2 == dotY))
+                {
+                    Console.Clear();
+                    Console.SetCursorPosition(screenWidth / 2 - 10, screenHeight / 2);
+                    Console.WriteLine("Game Over!");
+                    Thread.Sleep(2000);
+                    break;
+                }
+
+                // Check if the player reaches the finish line
+                if (dotX == screenWidth - 2 && dotY == screenHeight - 1)
+                {
+                    score++;
+                    Console.Clear();
+                    Console.SetCursorPosition(screenWidth / 2 - 10, screenHeight / 2);
+                    Console.WriteLine($"Level Completed! Score: {score}");
+                    Thread.Sleep(1500);
+                    break;
+                }
+            }
+
+        } while (true);
+    }
+
+    static void GenerateTrack()
+    {
+        obstacles = new (int, int)[random.Next(5, 10)]; // Random number of obstacles
+
+        // Randomly place obstacles on the track
+        for (int i = 0; i < obstacles.Length; i++)
+        {
+            obstacles[i] = (random.Next(1, screenWidth - 2), random.Next(1, screenHeight - 2));
+        }
+        dotX = 1;
+        dotY = 1;
+    }
+
+    static void DrawTrack()
+    {
+        Console.Clear();
+
+        // Draw obstacles
+        foreach (var obstacle in obstacles)
+        {
+            Console.SetCursorPosition(obstacle.Item1, obstacle.Item2);
+            Console.Write("X");
+        }
+
+        // Draw finish line
+        Console.SetCursorPosition(screenWidth - 2, screenHeight - 1);
+        Console.Write("F");
+
+        // Draw the player (dot)
+        Console.SetCursorPosition(dotX, dotY);
+        Console.Write("O");
+
+        // Draw score
+        Console.SetCursorPosition(0, 0);
+        Console.Write($"Score: {score}");
+    }
+}
