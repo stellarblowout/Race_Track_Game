@@ -1,1 +1,4 @@
 Q: I got an error in the terminal when I ran the program. 
+
+If you get an error from the terminal window, check the error code to see if it indicates which line of code needs to be changed/removed. For instance, there was an issue with line 19. Removing the associated code with the error should alleviate the issues. The error I originally received was from the following two lines:
+
