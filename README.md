@@ -5,24 +5,24 @@ This is a simple implementation for a terminal game and you can always extend it
 
 1. Open the terminal and type the following:
 
-dotnet new console -n RaceTrackGame
+   dotnet new console -n RaceTrackGame
 
-This will create a new file where the solution will run. 
+   This will create a new file where the solution will run. 
 
 2. Go back to the terminal and type the following:
 
-open RaceTrackGame
+   open RaceTrackGame
 
-This should open the Program.cs file in Visual Studio Code. 
+   This should open the Program.cs file in Visual Studio Code. 
 
 3. Replace all the code here with the code that is attached to this repository named csharp_script. Then, save the file. 
 
 4. Open the terminal again and type in the following:
 
-cd RaceTrackGame
-dotnet run
+   cd RaceTrackGame
+   dotnet run
 
-This should then lauch the game within the terminal window where you can play with the arrow keys on your keyboard. 
+   This should then lauch the game within the terminal window where you can play with the arrow keys on your keyboard. 
 
 
 
